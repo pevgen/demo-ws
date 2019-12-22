@@ -5,13 +5,31 @@
                   xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   targetNamespace="http://pevgen.ml">
 
+    <wsdl:types>
+        <xs:schema targetNamespace="http://pevgen.ml">
+            <xs:element name="inputSOATest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="test" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="outputSOATest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="result" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
 
     <!--Define input and output parameters -->
     <wsdl:message name="inputSOATest">
-        <wsdl:part name="test" type = "xs:string"/>
+        <wsdl:part name="in" element="tns:inputSOATest" />
     </wsdl:message>
     <wsdl:message name="outputSOATest">
-        <wsdl:part name="result" type = "xs:string" />
+        <wsdl:part name="out" element="tns:outputSOATest" />
     </wsdl:message>
 
     <!--Define port definition -->
