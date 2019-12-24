@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.test.server.MockWebServiceClient;
+import org.springframework.ws.test.server.ResponseMatchers;
 import org.springframework.xml.transform.ResourceSource;
 import org.springframework.xml.transform.StringSource;
 
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.*;
 
+@SuppressWarnings("squid:S2699")
 @SpringBootTest
 class DemoWsEndpointTest {
 
@@ -25,6 +27,8 @@ class DemoWsEndpointTest {
     private ClassPathResource payloadHelloRequestResource;
     @Value("payload/payloadHelloResponse.xml")
     private ClassPathResource payloadHelloResponseResource;
+    @Value("payload/payloadHelloExceptionRequest.xml")
+    private ClassPathResource payloadHelloExceptionRequest;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -39,7 +43,6 @@ class DemoWsEndpointTest {
     }
 
     @Test
-    @SuppressWarnings("squid:S2699")
     public void helloRequestResponse() throws IOException {
         Source requestPayload = new ResourceSource(payloadHelloRequestResource);
         Source responsePayload = new ResourceSource(payloadHelloResponseResource);
@@ -48,4 +51,12 @@ class DemoWsEndpointTest {
                 .andExpect(noFault())
                 .andExpect(payload(responsePayload));
     }
+    @Test
+    public void helloRequestExceptionResponse() throws IOException {
+        Source requestPayload = new ResourceSource(payloadHelloExceptionRequest);
+        mockClient
+                .sendRequest(withPayload(requestPayload))
+                .andExpect(serverOrReceiverFault("Hello SOAP exception! Request: req-exception"));
+    }
+
 }

@@ -21,6 +21,14 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="inputSOAExceptionTest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="test" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
         </xs:schema>
     </wsdl:types>
 
@@ -32,11 +40,22 @@
         <wsdl:part name="out" element="tns:outputSOATest" />
     </wsdl:message>
 
+    <wsdl:message name="inputSOAExceptionTest">
+        <wsdl:part name="in" element="tns:inputSOAExceptionTest" />
+    </wsdl:message>
+
     <!--Define port definition -->
     <wsdl:portType name="SOATestEndpoint">
         <wsdl:operation name="SOATest">
             <wsdl:input message="tns:inputSOATest" />
             <wsdl:output message="tns:outputSOATest" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!--Define port definition -->
+    <wsdl:portType name="SOAExceptionTestEndpoint">
+        <wsdl:operation name="SOAExceptionTest">
+            <wsdl:input message="tns:inputSOAExceptionTest" />
         </wsdl:operation>
     </wsdl:portType>
 
@@ -55,10 +74,26 @@
         </wsdl:operation>
     </wsdl:binding>
 
+    <wsdl:binding name="SOAExceptionTestBinding" type="tns:SOAExceptionTestEndpoint">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="SOAExceptionTest">
+            <soap:operation soapAction="http://pevgen.ml" style="document" />
+            <wsdl:input>
+                <soap:body parts="in" use="literal" />
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+
     <!--Define service -->
     <wsdl:service name="SOATestEndpointService">
         <wsdl:port name="SOATestEndpoint" binding="tns:SOATestBinding">
             <soap:address location="http://localhost:8080/demo-ws/ws/helloWorldExample" />
         </wsdl:port>
     </wsdl:service>
+    <wsdl:service name="SOAExceptionTestEndpointService">
+        <wsdl:port name="SOAExceptionTestEndpoint" binding="tns:SOAExceptionTestBinding">
+            <soap:address location="http://localhost:8080/demo-ws/ws/exceptionExample" />
+        </wsdl:port>
+    </wsdl:service>
+
 </wsdl:definitions>
