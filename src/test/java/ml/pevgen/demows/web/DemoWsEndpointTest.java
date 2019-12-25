@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.ws.test.server.MockWebServiceClient;
-import org.springframework.ws.test.server.ResponseMatchers;
 import org.springframework.xml.transform.ResourceSource;
-import org.springframework.xml.transform.StringSource;
 
 import javax.xml.transform.Source;
 import java.io.IOException;
@@ -21,6 +20,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.*;
 
 @SuppressWarnings("squid:S2699")
 @SpringBootTest
+@ActiveProfiles("test")
 class DemoWsEndpointTest {
 
     @Value("payload/payloadHelloRequest.xml")
@@ -51,6 +51,7 @@ class DemoWsEndpointTest {
                 .andExpect(noFault())
                 .andExpect(payload(responsePayload));
     }
+
     @Test
     public void helloRequestExceptionResponse() throws IOException {
         Source requestPayload = new ResourceSource(payloadHelloExceptionRequest);
