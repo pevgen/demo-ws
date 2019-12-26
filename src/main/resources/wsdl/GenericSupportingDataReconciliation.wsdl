@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+	targetNamespace ="http://xbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0" 
+	xmlns:impl      ="http://xbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://xbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  
+   <complexType name="GenericSupportingDataReconciliationException">
+    <sequence>
+     <element name="causeMessage" nillable="true" type="xsd:string"/>
+     <element name="details" nillable="true" type="xsd:string"/>
+     <element name="genericSudirStatusCode" nillable="true" type="xsd:string"/>
+     <element name="proprietarySystemStatusCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="fault" type="impl:GenericSupportingDataReconciliationException"/>
+ 
+   
+   
+   <complexType name="GenericAttribute">
+    <sequence>
+     <element name="name" nillable="false" type="xsd:string"/>
+     <element name="values" nillable="false" maxOccurs="unbounded" minOccurs="0" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   
+   <complexType name="GenericSupportingDataObject">
+    <sequence>
+     <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="attributes" type="impl:GenericAttribute"/>
+    </sequence>
+   </complexType>
+   
+   <element name="getSupportingData">
+    <complexType>
+     <sequence>
+      <element name="objectClass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSupportingDataResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getSupportingDataReturn" type="impl:GenericSupportingDataObject"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="complexTest">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="complexTestData" type="impl:GenericSupportingDataObject"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="complexTestResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getSupportingDataReturn" type="impl:GenericSupportingDataObject"/>
+     </sequence>
+    </complexType>
+   </element>
+
+  </schema>
+ </wsdl:types>
+
+  
+
+   <wsdl:message name="getSupportingDataRequest">
+
+      <wsdl:part element="impl:getSupportingData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSupportingDataResponse">
+
+      <wsdl:part element="impl:getSupportingDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="complexTestRequest">
+
+      <wsdl:part element="impl:complexTest" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="complexTestResponse">
+
+      <wsdl:part element="impl:complexTestResponse" name="parameters"/>
+
+   </wsdl:message>
+   
+   <wsdl:message name="GenericSupportingDataReconciliationException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+   
+   <wsdl:portType name="GenericSupportingDataReconciliation">
+
+      <wsdl:operation name="getSupportingData">
+
+         <wsdl:input message="impl:getSupportingDataRequest" name="getSupportingDataRequest"/>
+
+         <wsdl:output message="impl:getSupportingDataResponse" name="getSupportingDataResponse"/>
+
+         <wsdl:fault message="impl:GenericSupportingDataReconciliationException" name="GenericSupportingDataReconciliationException"/>
+
+      </wsdl:operation>
+
+	  <wsdl:operation name="complexTest">
+
+         <wsdl:input message="impl:complexTestRequest" name="complexTestRequest"/>
+
+         <wsdl:output message="impl:complexTestResponse" name="complexTestResponse"/>
+
+         <wsdl:fault message="impl:GenericSupportingDataReconciliationException" name="GenericSupportingDataReconciliationException"/>
+
+      </wsdl:operation>
+        
+   </wsdl:portType>
+
+   <wsdl:binding name="GenericSupportingDataReconciliationSoapBinding" type="impl:GenericSupportingDataReconciliation">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSupportingData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSupportingDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSupportingDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="GenericSupportingDataReconciliationException">
+
+            <wsdlsoap:fault name="GenericSupportingDataReconciliationException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+      
+	  <wsdl:operation name="complexTest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="complexTestRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="complexTestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="GenericSupportingDataReconciliationException">
+
+            <wsdlsoap:fault name="GenericSupportingDataReconciliationException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+	  
+   </wsdl:binding>
+
+   <wsdl:service name="GenericSupportingDataReconciliationService">
+
+      <wsdl:port binding="impl:GenericSupportingDataReconciliationSoapBinding" name="GenericSupportingDataReconciliationServicePort">
+
+         <wsdlsoap:address location="http://127.0.0.1:9080/services/GenericSupportingDataReconciliation"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

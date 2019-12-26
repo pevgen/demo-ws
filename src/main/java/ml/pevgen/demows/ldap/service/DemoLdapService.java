@@ -1,4 +1,4 @@
-package ml.pevgen.demows.service;
+package ml.pevgen.demows.ldap.service;
 
 import ml.pevgen.demows.ldap.model.Person;
 import ml.pevgen.demows.ldap.repository.DemoLdapRepository;

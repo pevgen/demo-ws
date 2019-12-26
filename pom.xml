@@ -95,6 +95,8 @@
                     <schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
                     <schemaIncludes>
                         <include>helloworld.wsdl</include>
+<!--                        <include>GenericAccountManagement2_good_namespace.wsdl</include>-->
+<!--                        <include>GenericSupportingDataReconciliation.wsdl</include>-->
                     </schemaIncludes>
                 </configuration>
             </plugin>

@@ -38,4 +38,19 @@ public class DemoWsConfiguration {
         wsdl11Definition.setWsdl(new ClassPathResource(WSDL_SERVLET_RELATIVE_PATH));
         return wsdl11Definition;
     }
+
+    @Bean(name = "sb1")
+    public Wsdl11Definition defaultWsdl11Definition1() {
+        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+        wsdl11Definition.setWsdl(new ClassPathResource("/wsdl/GenericAccountManagement2_good_namespace.wsdl"));
+        return wsdl11Definition;
+    }
+
+    @Bean(name = "sb2")
+    public Wsdl11Definition defaultWsdl11Definition2() {
+        SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+        wsdl11Definition.setWsdl(new ClassPathResource("/wsdl/GenericSupportingDataReconciliation.wsdl"));
+        return wsdl11Definition;
+    }
+
 }
