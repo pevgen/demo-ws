@@ -1,15 +1,20 @@
-package ml.pevgen.demows.repository;
+package ml.pevgen.demows.ldap.repository;
 
 import ml.pevgen.demows.ldap.model.Person;
-import ml.pevgen.demows.ldap.repository.DemoLdapRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.ldap.core.AttributesMapper;
+import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import javax.naming.NamingException;
+import javax.naming.directory.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.ldap.query.LdapQueryBuilder.query;
 
 
 @SpringBootTest

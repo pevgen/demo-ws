@@ -1,0 +1,3 @@
+<ns:getSupportingData xmlns:ns="http://xbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0">
+    <ns:objectClass>person</ns:objectClass>
+</ns:getSupportingData>
