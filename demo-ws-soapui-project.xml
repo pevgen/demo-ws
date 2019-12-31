@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="2c9363d4-833b-4697-a9c0-330f59dc7fea" activeEnvironment="Default" name="demo-ws" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="80414116-ffc1-4bea-b9a7-503a7470b2de" wsaVersion="NONE" name="SOATestBinding" type="wsdl" bindingName="{http://pevgen.ml}SOATestBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/WorkTest/demo-ws/src/main/resources/wsdl/helloworld.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/demo-ws/ws/helloWorldExample</con:endpoint></con:endpoints><con:operation id="29667e48-b6c9-4b78-9dc2-3384207e1dd8" isOneWay="false" action="http://pevgen.ml" name="SOATest" bindingOperationName="SOATest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="215a4af4-ee51-4480-b474-6959b2ae0872" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/demo-ws/ws/helloWorldExample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pev="http://pevgen.ml">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <pev:inputSOATest>\r
+         <test>?</test>\r
+      </pev:inputSOATest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pevgen.ml"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="1665f212-b528-4098-8eef-69b2bd90bbd4" wsaVersion="NONE" name="SOAExceptionTestBinding" type="wsdl" bindingName="{http://pevgen.ml}SOAExceptionTestBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/WorkTest/demo-ws/src/main/resources/wsdl/helloworld.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/WorkTest/demo-ws/src/main/resources/wsdl/helloworld.wsdl"><con:part><con:url>file:/D:/WorkTest/demo-ws/src/main/resources/wsdl/helloworld.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://pevgen.ml" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://pevgen.ml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://pevgen.ml">
+      <xs:element name="inputSOATest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:string" name="test"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="outputSOATest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:string" name="result"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="inputSOAExceptionTest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:string" name="test"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <!--Define input and output parameters-->
+  <wsdl:message name="inputSOATest">
+    <wsdl:part name="in" element="tns:inputSOATest"/>
+  </wsdl:message>
+  <wsdl:message name="outputSOATest">
+    <wsdl:part name="out" element="tns:outputSOATest"/>
+  </wsdl:message>
+  <wsdl:message name="inputSOAExceptionTest">
+    <wsdl:part name="in" element="tns:inputSOAExceptionTest"/>
+  </wsdl:message>
+  <!--Define port definition-->
+  <wsdl:portType name="SOATestEndpoint">
+    <wsdl:operation name="SOATest">
+      <wsdl:input message="tns:inputSOATest"/>
+      <wsdl:output message="tns:outputSOATest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <!--Define port definition-->
+  <wsdl:portType name="SOAExceptionTestEndpoint">
+    <wsdl:operation name="SOAExceptionTest">
+      <wsdl:input message="tns:inputSOAExceptionTest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <!--Bind Soap operation and service-->
+  <wsdl:binding name="SOATestBinding" type="tns:SOATestEndpoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SOATest">
+      <soap:operation soapAction="http://pevgen.ml" style="document"/>
+      <wsdl:input>
+        <soap:body parts="in" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="out" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SOAExceptionTestBinding" type="tns:SOAExceptionTestEndpoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SOAExceptionTest">
+      <soap:operation soapAction="http://pevgen.ml" style="document"/>
+      <wsdl:input>
+        <soap:body parts="in" use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <!--Define service-->
+  <wsdl:service name="SOATestEndpointService">
+    <wsdl:port name="SOATestEndpoint" binding="tns:SOATestBinding">
+      <soap:address location="http://localhost:8080/demo-ws/ws/helloWorldExample"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="SOAExceptionTestEndpointService">
+    <wsdl:port name="SOAExceptionTestEndpoint" binding="tns:SOAExceptionTestBinding">
+      <soap:address location="http://localhost:8080/demo-ws/ws/exceptionExample"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/demo-ws/ws/exceptionExample</con:endpoint></con:endpoints><con:operation id="d69e30f8-6e84-4e17-bf28-77588ad26310" isOneWay="false" action="http://pevgen.ml" name="SOAExceptionTest" bindingOperationName="SOAExceptionTest" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5be52911-4c02-491f-a34d-4a93682b95ab" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/demo-ws/ws/exceptionExample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pev="http://pevgen.ml">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <pev:inputSOAExceptionTest>\r
+         <test>rarr</test>\r
+      </pev:inputSOAExceptionTest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pevgen.ml"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="fc648f04-b225-43b8-a1b9-816ae1264e30" wsaVersion="NONE" name="GenericAccountManagementSoapBinding" type="wsdl" bindingName="{http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0}GenericAccountManagementSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/demo-ws/ws/sb1.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/demo-ws/ws/sb1.wsdl"><con:part><con:url>http://localhost:8080/demo-ws/ws/sb1.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0" xmlns:intf="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="resetPassword">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="xsd:string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="resetPasswordResponse">
+        <complexType/>
+      </element>
+      <complexType name="GenericAccountManagementException">
+        <sequence>
+          <element name="causeMessage" nillable="true" type="xsd:string"/>
+          <element name="details" nillable="true" type="xsd:string"/>
+          <element name="genericSudirStatusCode" nillable="true" type="xsd:string"/>
+          <element name="proprietarySystemStatusCode" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <element name="fault" type="impl:GenericAccountManagementException"/>
+      <element name="complexTest">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="complexTestData" type="impl:GenericAccountInfo"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="complexTestResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="getSupportingDataReturn" type="impl:GenericAccountInfo"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="validatePassword">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="xsd:string"/>
+            <element name="password" type="xsd:string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="validatePasswordResponse">
+        <complexType>
+          <sequence>
+            <element name="validatePasswordReturn" nillable="false" type="xsd:boolean"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="setPassword">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="xsd:string"/>
+            <element name="password" type="xsd:string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="setPasswordResponse">
+        <complexType/>
+      </element>
+      <element name="suspendAccount">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="xsd:string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="suspendAccountResponse">
+        <complexType/>
+      </element>
+      <element name="createAccount">
+        <complexType>
+          <sequence>
+            <element name="accountInfo" type="impl:GenericAccountInfo"/>
+          </sequence>
+        </complexType>
+      </element>
+      <complexType name="GenericAttribute">
+        <sequence>
+          <element name="name" type="xsd:string"/>
+          <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="values" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="GenericAccountInfo">
+        <sequence>
+          <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="attributes" type="impl:GenericAttribute"/>
+        </sequence>
+      </complexType>
+      <element name="createAccountResponse">
+        <complexType/>
+      </element>
+      <element name="modifyAccount">
+        <complexType>
+          <sequence>
+            <element name="accountInfo" type="impl:GenericAccountInfo"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="modifyAccountResponse">
+        <complexType/>
+      </element>
+      <element name="restoreAccount">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="xsd:string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="restoreAccountResponse">
+        <complexType/>
+      </element>
+      <element name="deleteAccount">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="xsd:string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="deleteAccountResponse">
+        <complexType/>
+      </element>
+      <element name="getAccountList">
+        <complexType/>
+      </element>
+      <element name="getAccountListResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="account" type="impl:GenericAccountInfo"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getAccountListById">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getAccountListByIdResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="account" type="impl:GenericAccountInfo"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="resetPasswordResponse">
+    <wsdl:part element="impl:resetPasswordResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="deleteAccountRequest">
+    <wsdl:part element="impl:deleteAccount" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="deleteAccountResponse">
+    <wsdl:part element="impl:deleteAccountResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="restoreAccountResponse">
+    <wsdl:part element="impl:restoreAccountResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="resetPasswordRequest">
+    <wsdl:part element="impl:resetPassword" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAccountListRequest">
+    <wsdl:part element="impl:getAccountList" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="complexTestRequest">
+    <wsdl:part element="impl:complexTest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="validatePasswordRequest">
+    <wsdl:part element="impl:validatePassword" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="setPasswordResponse">
+    <wsdl:part element="impl:setPasswordResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="suspendAccountRequest">
+    <wsdl:part element="impl:suspendAccount" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createAccountRequest">
+    <wsdl:part element="impl:createAccount" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="modifyAccountRequest">
+    <wsdl:part element="impl:modifyAccount" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="complexTestResponse">
+    <wsdl:part element="impl:complexTestResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="validatePasswordResponse">
+    <wsdl:part element="impl:validatePasswordResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="setPasswordRequest">
+    <wsdl:part element="impl:setPassword" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="suspendAccountResponse">
+    <wsdl:part element="impl:suspendAccountResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createAccountResponse">
+    <wsdl:part element="impl:createAccountResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="restoreAccountRequest">
+    <wsdl:part element="impl:restoreAccount" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAccountListResponse">
+    <wsdl:part element="impl:getAccountListResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GenericAccountManagementException">
+    <wsdl:part element="impl:fault" name="fault"/>
+  </wsdl:message>
+  <wsdl:message name="modifyAccountResponse">
+    <wsdl:part element="impl:modifyAccountResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAccountListByIdRequest">
+    <wsdl:part element="impl:getAccountListById" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAccountListByIdResponse">
+    <wsdl:part element="impl:getAccountListByIdResponse" name="getAccountListByIdResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="GenericAccountManagement">
+    <wsdl:operation name="resetPassword">
+      <wsdl:input message="impl:resetPasswordRequest" name="resetPasswordRequest"/>
+      <wsdl:output message="impl:resetPasswordResponse" name="resetPasswordResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="complexTest">
+      <wsdl:input message="impl:complexTestRequest" name="complexTestRequest"/>
+      <wsdl:output message="impl:complexTestResponse" name="complexTestResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="validatePassword">
+      <wsdl:input message="impl:validatePasswordRequest" name="validatePasswordRequest"/>
+      <wsdl:output message="impl:validatePasswordResponse" name="validatePasswordResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="setPassword">
+      <wsdl:input message="impl:setPasswordRequest" name="setPasswordRequest"/>
+      <wsdl:output message="impl:setPasswordResponse" name="setPasswordResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="suspendAccount">
+      <wsdl:input message="impl:suspendAccountRequest" name="suspendAccountRequest"/>
+      <wsdl:output message="impl:suspendAccountResponse" name="suspendAccountResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="createAccount">
+      <wsdl:input message="impl:createAccountRequest" name="createAccountRequest"/>
+      <wsdl:output message="impl:createAccountResponse" name="createAccountResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="modifyAccount">
+      <wsdl:input message="impl:modifyAccountRequest" name="modifyAccountRequest"/>
+      <wsdl:output message="impl:modifyAccountResponse" name="modifyAccountResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="restoreAccount">
+      <wsdl:input message="impl:restoreAccountRequest" name="restoreAccountRequest"/>
+      <wsdl:output message="impl:restoreAccountResponse" name="restoreAccountResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAccount">
+      <wsdl:input message="impl:deleteAccountRequest" name="deleteAccountRequest"/>
+      <wsdl:output message="impl:deleteAccountResponse" name="deleteAccountResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountList">
+      <wsdl:input message="impl:getAccountListRequest" name="getAccountListRequest"/>
+      <wsdl:output message="impl:getAccountListResponse" name="getAccountListResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountListById">
+      <wsdl:input message="impl:getAccountListByIdRequest" name="getAccountListByIdRequest"/>
+      <wsdl:output message="impl:getAccountListByIdResponse" name="getAccountListByIdResponse"/>
+      <wsdl:fault message="impl:GenericAccountManagementException" name="GenericAccountManagementException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GenericAccountManagementSoapBinding" type="impl:GenericAccountManagement">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="resetPassword">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="resetPasswordRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="resetPasswordResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="complexTest">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="complexTestRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="complexTestResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validatePassword">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="validatePasswordRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validatePasswordResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setPassword">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="setPasswordRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setPasswordResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="suspendAccount">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="suspendAccountRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="suspendAccountResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createAccount">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="createAccountRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createAccountResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modifyAccount">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="modifyAccountRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="modifyAccountResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="restoreAccount">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="restoreAccountRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="restoreAccountResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAccount">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="deleteAccountRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteAccountResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountList">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAccountListRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAccountListResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountListById">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAccountListByIdRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAccountListByIdResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericAccountManagementException">
+        <wsdlsoap:fault name="GenericAccountManagementException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GenericAccountManagementService2">
+    <wsdl:port binding="impl:GenericAccountManagementSoapBinding" name="GenericAccountManagement2">
+      <wsdlsoap:address location="http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint></con:endpoints><con:operation id="b114db4d-3e64-4069-9b1f-e390b6a7c671" isOneWay="false" action="" name="complexTest" bindingOperationName="complexTest" type="Request-Response" outputName="complexTestResponse" inputName="complexTestRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="853db0a4-d7a6-4b77-879c-9c6bca2ba03a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:complexTest>\r
+         <!--Zero or more repetitions:-->\r
+         <ns:complexTestData>\r
+            <!--Zero or more repetitions:-->\r
+            <ns:attributes>\r
+               <ns:name>?</ns:name>\r
+               <!--Zero or more repetitions:-->\r
+               <ns:values>?</ns:values>\r
+            </ns:attributes>\r
+         </ns:complexTestData>\r
+      </ns:complexTest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/complexTestRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="cb054825-eb5a-496c-b141-5509d1ede58b" isOneWay="false" action="" name="createAccount" bindingOperationName="createAccount" type="Request-Response" outputName="createAccountResponse" inputName="createAccountRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9513e451-f1b0-4685-bd42-316c15bc990b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:createAccount>\r
+         <ns:accountInfo>\r
+            <!--Zero or more repetitions:-->\r
+            <ns:attributes>\r
+               <ns:name>?</ns:name>\r
+               <!--Zero or more repetitions:-->\r
+               <ns:values>?</ns:values>\r
+            </ns:attributes>\r
+         </ns:accountInfo>\r
+      </ns:createAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/createAccountRequest"/></con:call></con:operation><con:operation id="fcefd52b-2df2-4f9d-9f6d-98bfd019328a" isOneWay="false" action="" name="deleteAccount" bindingOperationName="deleteAccount" type="Request-Response" outputName="deleteAccountResponse" inputName="deleteAccountRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5c8b742c-5ed9-46e1-a8e2-06ae8b065c8e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:deleteAccount>\r
+         <ns:accountId>?</ns:accountId>\r
+      </ns:deleteAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/deleteAccountRequest"/></con:call></con:operation><con:operation id="e745c6e7-42ac-4a4b-a5f2-07df938cad09" isOneWay="false" action="" name="getAccountList" bindingOperationName="getAccountList" type="Request-Response" outputName="getAccountListResponse" inputName="getAccountListRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="433d57a5-d141-41ac-88c4-23ada432cdab" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getAccountList/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/getAccountListRequest"/></con:call></con:operation><con:operation id="1b46baeb-4a81-41f6-b1a3-0a1dfb820397" isOneWay="false" action="" name="getAccountListById" bindingOperationName="getAccountListById" type="Request-Response" outputName="getAccountListByIdResponse" inputName="getAccountListByIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3547ac39-245f-490d-8e86-c0f139f01faa" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getAccountListById>\r
+         <ns:accountId>?</ns:accountId>\r
+      </ns:getAccountListById>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/getAccountListByIdRequest"/></con:call></con:operation><con:operation id="4289b396-5611-473a-90ad-aabd68cceb95" isOneWay="false" action="" name="modifyAccount" bindingOperationName="modifyAccount" type="Request-Response" outputName="modifyAccountResponse" inputName="modifyAccountRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="656dde6e-0221-4793-9cd9-74d2011ff8ed" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:modifyAccount>\r
+         <ns:accountInfo>\r
+            <!--Zero or more repetitions:-->\r
+            <ns:attributes>\r
+               <ns:name>?</ns:name>\r
+               <!--Zero or more repetitions:-->\r
+               <ns:values>?</ns:values>\r
+            </ns:attributes>\r
+         </ns:accountInfo>\r
+      </ns:modifyAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/modifyAccountRequest"/></con:call></con:operation><con:operation id="46c6adce-5658-4f66-9fcb-b40bfadc2505" isOneWay="false" action="" name="resetPassword" bindingOperationName="resetPassword" type="Request-Response" outputName="resetPasswordResponse" inputName="resetPasswordRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="775a7497-5c1e-4779-a738-91f73cfa7329" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:resetPassword>\r
+         <ns:accountId>?</ns:accountId>\r
+      </ns:resetPassword>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/resetPasswordRequest"/></con:call></con:operation><con:operation id="63c2c70c-ed60-45f7-82b3-5eba44f0cc00" isOneWay="false" action="" name="restoreAccount" bindingOperationName="restoreAccount" type="Request-Response" outputName="restoreAccountResponse" inputName="restoreAccountRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8b94162e-789c-4f46-a506-3da0226dda15" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:restoreAccount>\r
+         <ns:accountId>?</ns:accountId>\r
+      </ns:restoreAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/restoreAccountRequest"/></con:call></con:operation><con:operation id="f696884b-0514-448b-858f-6f6af5b87aaf" isOneWay="false" action="" name="setPassword" bindingOperationName="setPassword" type="Request-Response" outputName="setPasswordResponse" inputName="setPasswordRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2f5e6f3e-ccaa-48c3-b07b-9d88950cf388" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:setPassword>\r
+         <ns:accountId>?</ns:accountId>\r
+         <ns:password>?</ns:password>\r
+      </ns:setPassword>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/setPasswordRequest"/></con:call></con:operation><con:operation id="a0cf966a-1f24-408f-87f7-2967dd7c3e7d" isOneWay="false" action="" name="suspendAccount" bindingOperationName="suspendAccount" type="Request-Response" outputName="suspendAccountResponse" inputName="suspendAccountRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b924676c-3b22-46af-a6f1-ff12857abd19" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:suspendAccount>\r
+         <ns:accountId>?</ns:accountId>\r
+      </ns:suspendAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/suspendAccountRequest"/></con:call></con:operation><con:operation id="0978baf7-12ca-4468-9284-52250241a35b" isOneWay="false" action="" name="validatePassword" bindingOperationName="validatePassword" type="Request-Response" outputName="validatePasswordResponse" inputName="validatePasswordRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1ca98731-626b-4374-b699-f7924c031342" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/AccountManagementWeb/services/GenericAccountManagement2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:validatePassword>\r
+         <ns:accountId>?</ns:accountId>\r
+         <ns:password>?</ns:password>\r
+      </ns:validatePassword>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/generic.account.management.webservice/2.0.0/GenericAccountManagement/validatePasswordRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="663a42d3-8623-486d-9afa-e8f9f1192852" wsaVersion="NONE" name="GenericSupportingDataReconciliationSoapBinding" type="wsdl" bindingName="{http://sberbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0}GenericSupportingDataReconciliationSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/demo-ws/ws/sb2.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/demo-ws/ws/sb2.wsdl"><con:part><con:url>http://localhost:8080/demo-ws/ws/sb2.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://sberbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:impl="http://sberbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://sberbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="GenericSupportingDataReconciliationException">
+        <sequence>
+          <element name="causeMessage" nillable="true" type="xsd:string"/>
+          <element name="details" nillable="true" type="xsd:string"/>
+          <element name="genericSudirStatusCode" nillable="true" type="xsd:string"/>
+          <element name="proprietarySystemStatusCode" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <element name="fault" type="impl:GenericSupportingDataReconciliationException"/>
+      <complexType name="GenericAttribute">
+        <sequence>
+          <element name="name" nillable="false" type="xsd:string"/>
+          <element name="values" nillable="false" maxOccurs="unbounded" minOccurs="0" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="GenericSupportingDataObject">
+        <sequence>
+          <element maxOccurs="unbounded" nillable="false" minOccurs="0" name="attributes" type="impl:GenericAttribute"/>
+        </sequence>
+      </complexType>
+      <element name="getSupportingData">
+        <complexType>
+          <sequence>
+            <element name="objectClass" type="xsd:string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getSupportingDataResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" name="getSupportingDataReturn" type="impl:GenericSupportingDataObject"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="complexTest">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" name="complexTestData" type="impl:GenericSupportingDataObject"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="complexTestResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" name="getSupportingDataReturn" type="impl:GenericSupportingDataObject"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="getSupportingDataRequest">
+    <wsdl:part element="impl:getSupportingData" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getSupportingDataResponse">
+    <wsdl:part element="impl:getSupportingDataResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="complexTestRequest">
+    <wsdl:part element="impl:complexTest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="complexTestResponse">
+    <wsdl:part element="impl:complexTestResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="GenericSupportingDataReconciliationException">
+    <wsdl:part element="impl:fault" name="fault"/>
+  </wsdl:message>
+  <wsdl:portType name="GenericSupportingDataReconciliation">
+    <wsdl:operation name="getSupportingData">
+      <wsdl:input message="impl:getSupportingDataRequest" name="getSupportingDataRequest"/>
+      <wsdl:output message="impl:getSupportingDataResponse" name="getSupportingDataResponse"/>
+      <wsdl:fault message="impl:GenericSupportingDataReconciliationException" name="GenericSupportingDataReconciliationException"/>
+    </wsdl:operation>
+    <wsdl:operation name="complexTest">
+      <wsdl:input message="impl:complexTestRequest" name="complexTestRequest"/>
+      <wsdl:output message="impl:complexTestResponse" name="complexTestResponse"/>
+      <wsdl:fault message="impl:GenericSupportingDataReconciliationException" name="GenericSupportingDataReconciliationException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GenericSupportingDataReconciliationSoapBinding" type="impl:GenericSupportingDataReconciliation">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getSupportingData">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getSupportingDataRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSupportingDataResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericSupportingDataReconciliationException">
+        <wsdlsoap:fault name="GenericSupportingDataReconciliationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="complexTest">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="complexTestRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="complexTestResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GenericSupportingDataReconciliationException">
+        <wsdlsoap:fault name="GenericSupportingDataReconciliationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GenericSupportingDataReconciliationService">
+    <wsdl:port binding="impl:GenericSupportingDataReconciliationSoapBinding" name="GenericSupportingDataReconciliationServicePort">
+      <wsdlsoap:address location="http://127.0.0.1:9080/services/GenericSupportingDataReconciliation"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1:9080/services/GenericSupportingDataReconciliation</con:endpoint></con:endpoints><con:operation id="367841ce-996d-4e7f-b982-92b47ad0ff3c" isOneWay="false" action="" name="complexTest" bindingOperationName="complexTest" type="Request-Response" outputName="complexTestResponse" inputName="complexTestRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="285d72df-44cb-47bc-a033-d1f7a9469e17" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:9080/services/GenericSupportingDataReconciliation</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://sberbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:complexTest>\r
+         <!--1 or more repetitions:-->\r
+         <ns:complexTestData>\r
+            <!--Zero or more repetitions:-->\r
+            <ns:attributes>\r
+               <ns:name>?</ns:name>\r
+               <!--Zero or more repetitions:-->\r
+               <ns:values>?</ns:values>\r
+            </ns:attributes>\r
+         </ns:complexTestData>\r
+      </ns:complexTest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0/GenericSupportingDataReconciliation/complexTestRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="798793b0-9f59-49df-ba77-5f1d73f46550" isOneWay="false" action="" name="getSupportingData" bindingOperationName="getSupportingData" type="Request-Response" outputName="getSupportingDataResponse" inputName="getSupportingDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="82f32a5d-5b32-4ce6-bf64-1971286ddb5b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/demo-ws/ws/getSupportingData</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://xbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getSupportingData>\r
+         <ns:objectClass>person</ns:objectClass>\r
+      </ns:getSupportingData>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sberbank.ru/soa/service/sudir/itdi/smallsystem.generic.supportingdata.reconciliation/2.0.0/GenericSupportingDataReconciliation/getSupportingDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
